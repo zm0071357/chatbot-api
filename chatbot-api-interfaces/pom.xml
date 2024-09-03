@@ -71,6 +71,12 @@
             <version>2.2.3</version>
             <classifier>jdk15</classifier>
         </dependency>
+
+        <dependency>
+            <groupId>org.chatbox-api</groupId>
+            <artifactId>chatbot-api-domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
