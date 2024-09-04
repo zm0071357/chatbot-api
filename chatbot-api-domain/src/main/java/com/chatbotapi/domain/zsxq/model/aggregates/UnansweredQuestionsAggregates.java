@@ -4,7 +4,7 @@ import com.chatbotapi.domain.zsxq.model.res.RespData;
 import lombok.Data;
 
 /**
- * 未回答问题的聚合信息
+ * 提问的聚合信息
  */
 @Data
 public class UnansweredQuestionsAggregates {

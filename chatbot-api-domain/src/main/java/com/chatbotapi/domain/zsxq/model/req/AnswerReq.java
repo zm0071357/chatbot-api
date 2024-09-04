@@ -5,11 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 回答
+ * 回答的请求对象
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnswerReq {
+    /**
+     * 回答
+     */
     private ReqData req_data;
 }

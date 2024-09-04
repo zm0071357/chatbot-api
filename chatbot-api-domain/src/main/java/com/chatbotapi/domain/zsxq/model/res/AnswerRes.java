@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * 请求回答问题结果
+ * 回答是否成功
  */
 @Data
 @AllArgsConstructor

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 填写回答
+ * 回答
  */
 @Data
 public class ReqData {

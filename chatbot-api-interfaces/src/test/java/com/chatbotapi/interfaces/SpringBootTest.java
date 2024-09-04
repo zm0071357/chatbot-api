@@ -43,6 +43,10 @@ public class SpringBootTest {
         logger.info("测试结果:{}", JSON.toJSONString(unansweredQuestionsAggregates));
     }
 
+    /**
+     * 测试调用GPT
+     * @throws IOException
+     */
     @Test
     public void test_chatGPT() throws IOException {
         String res = openAi.doChatGPT("背诵静夜思");

@@ -7,7 +7,7 @@ import java.io.IOException;
 public interface IZsxqApi {
 
     /**
-     * 返回未回答的问题
+     * 获取提问
      * @param groupId 知识星球id
      * @param cookie cookie
      * @return
@@ -16,7 +16,7 @@ public interface IZsxqApi {
     UnansweredQuestionsAggregates queryUnansweredQuestions(String groupId, String cookie) throws IOException;
 
     /**
-     * 回答问题
+     * 回答
      * @param groupId 知识星球id
      * @param cookie  cookie
      * @param topicId 话题id

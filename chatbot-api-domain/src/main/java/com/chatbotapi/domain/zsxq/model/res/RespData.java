@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 返回全部话题   请求结果
+ * 请求全部话题
  */
 @Data
 public class RespData {

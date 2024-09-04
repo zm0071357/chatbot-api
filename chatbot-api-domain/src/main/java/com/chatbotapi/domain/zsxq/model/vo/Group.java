@@ -8,17 +8,17 @@ import lombok.Data;
 @Data
 public class Group {
     /**
-     * id
+     * 星球id
      */
     private String group_id;
 
     /**
-     * 名字
+     * 星球名字
      */
     private String name;
 
     /**
-     * 类型
+     * 星球类型
      */
     private String type;
 }

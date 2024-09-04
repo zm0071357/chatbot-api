@@ -30,15 +30,20 @@ public class ZsxqApi implements IZsxqApi {
 
     @Override
     public UnansweredQuestionsAggregates queryUnansweredQuestions(String groupId, String cookie) throws IOException {
+        // 构建Http客户端
         CloseableHttpClient client = HttpClientBuilder.create().build();
-        HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/" + groupId + "/topics?/scope=unanswered_questions&count=20");
+        // 请求接口
+        HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/" + groupId + "/topics?scope=unanswered_questions&count=20");
+        // 添加请求头
         get.addHeader("cookie",cookie);
-        get.addHeader("Content-Type","application/json;charset=utf8");
+        get.addHeader("Content-Type","application/json; charset=UTF-8");
+        // 执行请求
         CloseableHttpResponse response = client.execute(get);
-
+        // 接口响应200 接收数据
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            // 将数据解析为Java对象
             String jsonStr = EntityUtils.toString(response.getEntity());
-            logger.info("获取星球问题,groupId:{},jsonStr:{}",groupId,jsonStr);
+            logger.info("获取到星球问题:jsonStr:{}",jsonStr);
             return JSON.parseObject(jsonStr, UnansweredQuestionsAggregates.class);
         } else {
             throw new RuntimeException("返回错误信息:" + response.getStatusLine().getStatusCode());
@@ -51,18 +56,18 @@ public class ZsxqApi implements IZsxqApi {
         HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/" + topicId + "/answer");
         post.addHeader("cookie",cookie);
         post.addHeader("Content-Type","application/json;charset=utf8");
-        //post.addHeader("user-agent","");
-
+        // 将回答对象解析为JSON数据
         AnswerReq answerReq = new AnswerReq(new ReqData(text,silenced));
         String paramJson = JSONObject.fromObject(answerReq).toString();
-
+        // 创建请求体，将回答的JSON数据写入
         StringEntity stringEntity = new StringEntity(paramJson, ContentType.create("text/json", "utf-8"));
         post.setEntity(stringEntity);
-
         CloseableHttpResponse response = client.execute(post);
+        // 接口响应200 接收数据
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             String jsonStr = EntityUtils.toString(response.getEntity());
-            logger.info("回答星球问题结果,groupId:{},topicId:{},jsonStr:{}",groupId,topicId,jsonStr);
+            logger.info("提问Id:{},回答:{}",topicId,jsonStr);
+            // 解析
             AnswerRes res = JSON.parseObject(jsonStr, AnswerRes.class);
             return res.isSucceeded();
         } else {
